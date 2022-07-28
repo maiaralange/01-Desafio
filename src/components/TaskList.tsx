@@ -15,15 +15,12 @@ export function TaskList() {
   const [newTaskTitle, setNewTaskTitle] = useState('');
 
   function handleCreateNewTask() {
-    const newTasks = [
-      ...tasks,
-      {
-        id: Math.floor(Math.random() * 10000),
-        title: newTaskTitle,
-        isComplete: false
-      }
-    ];
-    setTasks(newTasks);
+    const newTask = {
+      id: Math.floor(Math.random() * 10000),
+      title: newTaskTitle,
+      isComplete: false
+    };
+    setTasks([...tasks, newTask]);
     setNewTaskTitle('');
   }
 
@@ -32,7 +29,8 @@ export function TaskList() {
   }
 
   function handleRemoveTask(id: number) {
-    // Remova uma task da listagem pelo ID
+    const newTasks = tasks.filter((task) => task.id !== id);
+    setTasks(newTasks);
   }
 
   return (

@@ -15,6 +15,10 @@ export function TaskList() {
   const [newTaskTitle, setNewTaskTitle] = useState('');
 
   function handleCreateNewTask() {
+    if (newTaskTitle.trim() === '') {
+      return;
+    }
+
     const newTask = {
       id: Math.floor(Math.random() * 10000),
       title: newTaskTitle,
